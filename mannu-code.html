@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mannu - The Best Dog in the World</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --light-violet: #d8b4fe;
+            --light-blue: #a5b4fc;
+            --light-pink: #fbcfe8;
+            --medium-violet: #c084fc;
+            --medium-blue: #818cf8;
+            --medium-pink: #f472b6;
+            --dark-violet: #9333ea;
+            --dark-blue: #4f46e5;
+            --dark-pink: #db2777;
+            --text-color: #4a5568;
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--light-pink), var(--light-violet), var(--light-blue));
+            color: var(--text-color);
+            min-height: 100vh;
+            padding-bottom: 60px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0 30px;
+            position: relative;
+        }
+        
+        .header-content {
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px var(--shadow);
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, var(--medium-pink), var(--medium-violet), var(--medium-blue));
+        }
+        
+        .header-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, var(--dark-pink), var(--dark-violet), var(--dark-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content h2 {
+            font-size: 1.8rem;
+            color: var(--medium-blue);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .header-content p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .main-content {
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .image-placeholder {
+            flex: 1;
+            min-width: 30px;
+            background: linear-gradient(135deg, var(--light-pink), var(--light-blue));
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            box-shadow: 0 10px 25px var(--shadow);
+            border: 5px dashed var(--medium-violet);
+            transition: all 0.3s ease;
+        }
+        
+        .image-placeholder:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .image-placeholder i {
+            font-size: 8rem;
+            color: var(--medium-violet);
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        
+        .image-placeholder h3 {
+            font-size: 1.8rem;
+            color: var(--dark-violet);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .image-placeholder p {
+            text-align: center;
+            font-size: 1.1rem;
+            max-width: 400px;
+            color: var(--text-color);
+        }
+        
+        .dog-info {
+            flex: 2;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .info-card {
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 25px var(--shadow);
+            border-left: 8px solid var(--medium-pink);
+            transition: transform 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .info-card h3 {
+            font-size: 1.8rem;
+            color: var(--dark-pink);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-card h3 i {
+            color: var(--medium-blue);
+        }
+        
+        .info-card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .traits {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .trait {
+            background: linear-gradient(135deg, var(--light-pink), var(--light-violet));
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            color: var(--dark-violet);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .trait:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, var(--light-violet), var(--light-blue));
+        }
+        
+        .activities {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+        
+        .activity {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid var(--medium-blue);
+            transition: all 0.3s ease;
+        }
+        
+        .activity:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .activity i {
+            font-size: 2.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+        }
+        
+        .activity h4 {
+            font-size: 1.3rem;
+            color: var(--dark-violet);
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow);
+            border-top: 8px solid var(--medium-pink);
+        }
+        
+        footer h3 {
+            font-size: 1.8rem;
+            color: var(--dark-violet);
+            margin-bottom: 20px;
+        }
+        
+        .paw-prints {
+            font-size: 2rem;
+            color: var(--medium-pink);
+            margin: 20px 0;
+            letter-spacing: 15px;
+        }
+        
+        .footer-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .highlight {
+            color: var(--dark-pink);
+            font-weight: 700;
+        }
+        
+        .fun-fact {
+            background: linear-gradient(135deg, var(--light-pink), var(--light-blue));
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            border-left: 5px solid var(--medium-violet);
+            font-weight: 600;
+            color: var(--dark-violet);
+        }
+        
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .header-content h2 {
+                font-size: 1.5rem;
+            }
+            
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .activities {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .image-instructions {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+        
+        .paw-animation {
+            position: fixed;
+            font-size: 2rem;
+            color: var(--medium-pink);
+            opacity: 0.3;
+            z-index: -1;
+            animation: float 20s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated paw prints in background -->
+    <div class="paw-animation" style="left: 5%; animation-delay: 0s;">🐾</div>
+    <div class="paw-animation" style="left: 15%; animation-delay: 2s;">🐾</div>
+    <div class="paw-animation" style="left: 25%; animation-delay: 4s;">🐾</div>
+    <div class="paw-animation" style="left: 75%; animation-delay: 6s;">🐾</div>
+    <div class="paw-animation" style="left: 85%; animation-delay: 8s;">🐾</div>
+    <div class="paw-animation" style="left: 95%; animation-delay: 10s;">🐾</div>
+    
+    <div class="container" style="height: auto;">
+        <header>
+            <div class="header-content">
+                <h1>Mannu</h1>
+                <h2>The Best Dog in the World</h2>
+                <p>Welcome to the official tribute page for Mannu, the most amazing, loyal, and fun-loving dog who brings joy to everyone he meets. This website celebrates all the wonderful things that make Mannu truly special.</p>
+            </div>
+        </header>
+        
+    <div class="main-content">
+        <div class="image-placeholder" style="width: 100%; display: inline-block;">
+            <img src="mannu.jpeg" alt="Mannu - The Best Dog" style="width:100%; height: auto; border-radius:15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+            <h3 style="margin-top: 20px;">Mannu - The Handsome Dog!</h3>
+            <p style="margin-top: 10px;">Look at that smile! Mannu in all his glory, ready to steal everyone's heart.</p> 
+        </div>
+    
+    <div class="dog-info" style="margin-top: 30px;">
+        <div class="info-card">
+            <h3><i class="fas fa-heart"></i> Why Mannu is the Best</h3>
+            <p>Mannu isn't just a dog - he's family. With his boundless energy, unconditional love, and hilarious antics, he makes every day brighter. Whether he's greeting you at the door with enthusiastic tail wags or curling up beside you after a long day, Mannu knows exactly how to bring joy to any situation.</p>
+            
+            <div class="traits">
+                <div class="trait">Loyal</div>
+                <div class="trait">Playful</div>
+                <div class="trait">Intelligent</div>
+                <div class="trait">Affectionate</div>
+                <div class="trait">Funny</div>
+                <div class="trait">Protective</div>
+                <div class="trait">Energetic</div>
+                <div class="trait">Gentle</div>
+            </div>
+        </div>
+        
+        <div class="info-card">
+            <h3><i class="fas fa-star"></i> Mannu's Favorite Activities</h3>
+            <p>Mannu has a zest for life that's truly inspiring. Here are some of his most beloved pastimes:</p>
+            
+            <div class="activities">
+                <div class="activity">
+                    <i class="fas fa-walking"></i>
+                    <h4>Long Walks</h4>
+                    <p>Exploring the neighborhood and meeting new friends</p>
+                </div>
+                <div class="activity">
+                    <i class="fas fa-baseball-ball"></i>
+                    <h4>Fetch</h4>
+                    <p>Chasing balls with endless enthusiasm</p>
+                </div>
+                <div class="activity">
+                    <i class="fas fa-couch"></i>
+                    <h4>Nap Time</h4>
+                    <p>Cozy naps in the sunniest spots of the house</p>
+                </div>
+                <div class="activity">
+                    <i class="fas fa-ice-cream"></i>
+                    <h4>Treat Time</h4>
+                    <p>Enjoying his favorite snacks (especially chicken!)</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="info-card">
+            <h3><i class="fas fa-award"></i> Mannu's Special Talents</h3>
+            <p>Beyond being adorable, Mannu has some impressive skills that never fail to amaze:</p>
+            
+            <div class="traits">
+                <div class="trait">Understanding Commands</div>
+                <div class="trait">Catching Treats Mid-Air</div>
+                <div class="trait">Finding Lost Items</div>
+                <div class="trait">Comforting When Sad</div>
+                <div class="trait">Alerting to Visitors</div>
+                <div class="trait">Performing Tricks</div>
+            </div>
+            
+            <div class="fun-fact">
+                <i class="fas fa-lightbulb"></i> Fun Fact: Mannu knows exactly when it's dinner time and will politely remind you with a gentle nudge!
+            </div>
+        </div>
+    </div>
+</div>
+        
+        <footer>
+            <h3>A Tribute to Mannu</h3>
+            <div class="paw-prints">
+                <i class="fas fa-paw"></i>
+                <i class="fas fa-paw"></i>
+                <i class="fas fa-paw"></i>
+                <i class="fas fa-paw"></i>
+                <i class="fas fa-paw"></i>
+            </div>
+            <div class="footer-text">
+                <p>Mannu has brought immeasurable happiness and love into our lives. He's not just a pet, but a true companion, a source of comfort, and a constant reminder of the simple joys in life.</p>
+                <p>This website is dedicated to celebrating <span class="highlight">Mannu - The Best Dog in the World</span>. May his tail never stop wagging and his heart always be full of love.</p>
+                <p><em>"Dogs do speak, but only to those who know how to listen." - Orhan Pamuk</em></p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Add some interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Make traits interactive
+            const traits = document.querySelectorAll('.trait');
+            traits.forEach(trait => {
+                trait.addEventListener('click', function() {
+                    const originalText = this.textContent;
+                    this.textContent = "Mannu loves this! 🐕";
+                    this.style.backgroundColor = "var(--medium-pink)";
+                    this.style.color = "white";
+                    
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                        this.style.backgroundColor = "";
+                        this.style.color = "";
+                    }, 1000);
+                });
+            });
+            
+            // Add animation to activities
+            const activities = document.querySelectorAll('.activity');
+            activities.forEach(activity => {
+                activity.addEventListener('mouseenter', function() {
+                    const icon = this.querySelector('i');
+                    icon.style.transform = 'scale(1.2)';
+                    icon.style.transition = 'transform 0.3s ease';
+                });
+                
+                activity.addEventListener('mouseleave', function() {
+                    const icon = this.querySelector('i');
+                    icon.style.transform = 'scale(1)';
+                });
+            });
+            
+            // Add a fun click effect to the header
+            const header = document.querySelector('.header-content h1');
+            header.addEventListener('click', function() {
+                const colors = ['var(--dark-pink)', 'var(--dark-violet)', 'var(--dark-blue)'];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                this.style.color = randomColor;
+                
+                setTimeout(() => {
+                    this.style.color = '';
+                }, 500);
+            });
+            
+            // Create floating hearts when clicking on the heart icon
+            const heartIcon = document.querySelector('.fa-heart');
+            heartIcon.addEventListener('click', function(e) {
+                e.stopPropagation();
+                for(let i = 0; i < 10; i++) {
+                    createFloatingHeart(e.clientX, e.clientY);
+                }
+            });
+            
+            function createFloatingHeart(x, y) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.style.position = 'fixed';
+                heart.style.left = (x - 10) + 'px';
+                heart.style.top = (y - 10) + 'px';
+                heart.style.fontSize = '20px';
+                heart.style.zIndex = '9999';
+                heart.style.pointerEvents = 'none';
+                document.body.appendChild(heart);
+                
+                // Random animation
+                const animation = heart.animate([
+                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                    { transform: `translateY(-${100 + Math.random() * 100}px) translateX(${(Math.random() - 0.5) * 100}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                ], {
+                    duration: 1000 + Math.random() * 1000,
+                    easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
+                });
+                
+                animation.onfinish = () => {
+                    heart.remove();
+                };
+            }
+        });
+    </script>
+</body>
+</html> 
